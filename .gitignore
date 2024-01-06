@@ -1,0 +1,7 @@
+.venv
+.python-version
+.idea
+.pytest_cache
+.env
+*.db
+*.db-journal
