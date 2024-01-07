@@ -1,3 +1,5 @@
+import logging
+
 from fastapi import APIRouter, HTTPException
 
 from db import post_table, database, comment_table
@@ -9,6 +11,8 @@ from models.post import (
     UserPostWithComments,
 )
 
+
+logger = logging.getLogger(__name__)
 router = APIRouter()
 
 
@@ -28,6 +32,7 @@ async def create_post(post: UserPostIn):
 @router.get("/post", response_model=list[UserPost])
 async def get_all_posts():
     query = post_table.select()
+    logger.info(query)
     return await database.fetch_all(query)
 
 
