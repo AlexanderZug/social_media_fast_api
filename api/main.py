@@ -7,6 +7,7 @@ from fastapi.exception_handlers import http_exception_handler
 
 from db import database
 from routers.posts import router as posts_router
+from routers.user import router as users_router
 from logging_conf import configure_logging
 
 logger = logging.getLogger(__name__)
@@ -23,6 +24,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 app.add_middleware(CorrelationIdMiddleware)
 app.include_router(posts_router)
+app.include_router(users_router)
 
 
 @app.exception_handler(HTTPException)
